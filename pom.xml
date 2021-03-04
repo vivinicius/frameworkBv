@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>br.com.bancobv</groupId>
+    <artifactId>sample-front-end</artifactId>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
+    <name>BancobvSelenium</name>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.version>3.3</maven.compiler.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <io.cucumber.version>6.1.2</io.cucumber.version>
+        <selenium.version>4.0.0-alpha-6</selenium.version>
+        <selenium-server.version>4.0.0-alpha-2</selenium-server.version>
+        <webdrivermanager.version>4.0.0</webdrivermanager.version>
+        <owner.version>1.0.12</owner.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- Dependencias do Cucumber -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${io.cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${io.cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${io.cucumber.version}</version>
+        </dependency>
+
+
+        <!--        Dependecia que gera massas-->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+        </dependency>
+        <!--        Dependencias do Selenium-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>${selenium-server.version}</version>
+        </dependency>
+
+        <!--        Dependecia do WebDriver-->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
+
+        <!--        Dependecia Owner, serve para ler os resources-->
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>${owner.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.trivago.rta</groupId>
+                <artifactId>cluecumber-report-plugin</artifactId>
+                <version>2.3.4</version>
+                <executions>
+                    <execution>
+                        <id>report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>reporting</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceJsonReportDirectory>${project.build.directory}/cluecumber-report/json
+                    </sourceJsonReportDirectory>
+                    <generatedHtmlReportDirectory>${project.build.directory}/cluecumber-report
+                    </generatedHtmlReportDirectory>
+                    <customPageTitle>Relatorio de execucao</customPageTitle>
+                    <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
+                    <expandStepHooks>true</expandStepHooks>
+                    <expandDocStrings>true</expandDocStrings>
+                    <customStatusColorPassed>#3592cd</customStatusColorPassed>
+                    <customParameters>
+                        <Projeto>Banco BV</Projeto>
+                    </customParameters>
+                    <customCss>${project.basedir}/src/test/resources/custom/custom.css</customCss>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

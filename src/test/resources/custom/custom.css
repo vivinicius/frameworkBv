@@ -1,0 +1,39 @@
+.footer, .card-header {
+    background-color: #00578d  !important;
+    color: white;
+}
+
+.navbar{
+	background-color: #3592cd !important;
+	color: #00578d
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	color: rgb(255 255 255);
+}
+
+
+/*linear-gradient(to right, #3592cd 0%,#00578d 100%)*/
+
+.pb-2.mt-4.mb-2.border-bottom h5, .pb-2.mt-4.mb-2.border-bottom h3 {
+	white-space: pre-wrap;
+	text-align: left;
+	line-height: 1.5;
+}
+
+@media (min-width: 1025px){
+	.navbar-nav {
+	    background-image: url(https://www.bancobv.com.br/web/site/resources/img/logo-banco-bv.svg);
+	    background-repeat: no-repeat;
+	    background-size: auto 100%;
+	    padding-left: 75px;
+	}
+}
+
+:root{
+	--success: #3592cd
+}
+
+.footer div span {
+  display: none;
+}
